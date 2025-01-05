@@ -25,6 +25,7 @@ def save_content_and_generate_questions_separately(url, content_filepath, questi
 
 # Extract all text from the webpage
     content = soup.get_text()
+    print(content)
     # Save the content to a JSON file
     with open(content_filepath, 'w') as file:
         json.dump({'url': url, 'content': content}, file)
@@ -58,14 +59,15 @@ def generate_questions(content, api_key, n=10):
 
 # Scrape the website to get all links
 links = scrape_website(website_url)
-
+# with open('link/', 'w') as file:
+#     json.dump(links, file)
 # For each link, save the content and generate questions in separate files
-for i, link in enumerate(links):
-    if i>10:
-        break
-    try:
-        content_filepath = f'data/page_content_{i}.json'
-        questions_filepath = f'data/page_questions_{i}.json'
-        save_content_and_generate_questions_separately(link, content_filepath, questions_filepath, api_key)
-    except Exception as e:
-        print(f"{i} Error processing {link}: {e}")
+# for i, link in enumerate(links):
+#     if i>10:
+#         break
+#     try:
+#         content_filepath = f'data/page_content_{i}.json'
+#         questions_filepath = f'data/page_questions_{i}.json'
+#         save_content_and_generate_questions_separately(link, content_filepath, questions_filepath, api_key)
+#     except Exception as e:
+#         print(f"{i} Error processing {link}: {e}")
